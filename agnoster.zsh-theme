@@ -122,6 +122,14 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment $PRIMARY_FG default " $symbols "
 }
 
+prompt_trias() {
+  if [[ $TRIAS_PROFILE = "prod" ]]; then
+    prompt_segment red black " prod "
+  elif [[ -n $TRIAS_PROFILE ]]; then
+    prompt_segment yellow black " $TRIAS_PROFILE "
+  fi
+}
+
 # Display current virtual environment
 prompt_virtualenv() {
   if [[ -n $VIRTUAL_ENV ]]; then
@@ -139,6 +147,7 @@ prompt_agnoster_main() {
   prompt_context
   prompt_virtualenv
   prompt_dir
+  prompt_trias
   prompt_git
   prompt_end
 }
